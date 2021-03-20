@@ -1,0 +1,20 @@
+.fixed-bottom {
+  margin: auto;
+  width: 100%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: unset;
+}
+
+@media only screen and (max-width: 568px) {
+  .rem-border {
+    border: none !important;
+  }
+  .rem-p5 {
+    padding: 0 !important;
+  }
+  #mathBg {
+    display: none;
+  }
+}
