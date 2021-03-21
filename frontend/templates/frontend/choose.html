@@ -8,15 +8,17 @@
             </div>
             <hr>
             <div class="accordion accordion-flush" id="accordionFlushOperation">
+                {% for category in categories %}
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingOne">
+                    <h2 class="accordion-header" id="flush-heading{{category.id}}">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                            <h5>Multiplication</h5>
+                            data-bs-target="#flush-collapse{{category.id}}" aria-expanded="false"
+                            aria-controls="flush-collapse{{category.id}}">
+                            <h5>{{category.category_name}}</h5>
                         </button>
                     </h2>
-                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-                        data-bs-parent="#accordionFlushOperation">
+                    <div id="flush-collapse{{category.id}}" class="accordion-collapse collapse"
+                        aria-labelledby="flush-heading{{category.id}}" data-bs-parent="#accordionFlushOperation">
                         <div class="accordion-body">
                             <form action="#" method="post">
                                 <div class="container p-0">
@@ -26,7 +28,7 @@
                                         <output name="quizMulthOutput" id="multOutput">10</output>
                                     </label>
                                     <input type="range" class="form-range mb-4" min="10" max="50" id="multRange"
-                                        name="quizLength" oninput="multOutput.value = multRange.value" step="5"
+                                        name="examSetting" oninput="multOutput.value = multRange.value" step="5"
                                         value="10" required>
 
                                     <div class="row">
@@ -45,9 +47,9 @@
                                     <div class="row g-2 ">
                                         <div class="col-md-5">
                                             <div class="form-floating">
-                                                <input type="number" class="form-control" id="floatingInputGrid" min="1"
-                                                    placeholder="#" max="7" required>
-                                                <label for="floatingInputGrid">Multiplicand</label>
+                                                <input type="number" class="form-control" id="floatingInputGrid"
+                                                    name="examSetting" min="1" placeholder="#" max="7" required>
+                                                <label for="floatingInputGrid">{{category.first_part}}</label>
                                             </div>
                                         </div>
                                         <div class="col-md-2 align-self-center text-center">
@@ -55,9 +57,9 @@
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-floating">
-                                                <input type="number" class="form-control" id="floatingInputGrid" min="1"
-                                                    placeholder="#" max="7" required>
-                                                <label for="floatingInputGrid">Multiplier</label>
+                                                <input type="number" class="form-control" id="floatingInputGrid"
+                                                    name="examSetting" min="1" placeholder="#" max="7" required>
+                                                <label for="floatingInputGrid">{{category.first_part}}</label>
                                             </div>
                                         </div>
                                     </div>
@@ -68,188 +70,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                            <h5>Division</h5>
-                        </button>
-                    </h2>
-                    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
-                        data-bs-parent="#accordionFlushOperation">
-                        <div class="accordion-body">
-                            <form action="#" method="post">
-                                <div class="container p-0">
-                                    {% csrf_token %}
-                                    <h1 class="fs-5">Set range</h1>
-                                    <label for="customRange2" class="form-label">From 1 to
-                                        <output name="quizMulthOutput" id="multOutput">10</output>
-                                    </label>
-                                    <input type="range" class="form-range mb-4" min="10" max="50" id="multRange"
-                                        name="quizLength" oninput="multOutput.value = multRange.value" step="5"
-                                        value="10" required>
-
-                                    <div class="row">
-                                        <div class="col">
-                                            <h1 class="fs-5">Set combinations in digits
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
-                                                    data-bs-target="#helpModal">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </button>
-                                            </h1>
-
-
-                                        </div>
-                                    </div>
-                                    <div class="row g-2 ">
-                                        <div class="col-md-5">
-                                            <div class="form-floating">
-                                                <input type="number" class="form-control" id="floatingInputGrid" min="1"
-                                                    placeholder="#" max="7" required>
-                                                <label for="floatingInputGrid">Dividend</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2 align-self-center text-center">
-                                            <h1 class="fs-5">X</h1>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="form-floating">
-                                                <input type="number" class="form-control" id="floatingInputGrid" min="1"
-                                                    placeholder="#" max="7" required>
-                                                <label for="floatingInputGrid">Divisor</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <button type="submit" class="btn btn-primary">Proceed</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapseThree" aria-expanded="false"
-                            aria-controls="flush-collapseThree">
-                            <h5>Addition</h5>
-                        </button>
-                    </h2>
-                    <div id="flush-collapseThree" class="accordion-collapse collapse"
-                        aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushOperation">
-                        <div class="accordion-body">
-                            <form action="#" method="post">
-                                <div class="container p-0">
-                                    {% csrf_token %}
-                                    <h1 class="fs-5">Set range</h1>
-                                    <label for="customRange2" class="form-label">From 1 to
-                                        <output name="quizMulthOutput" id="multOutput">10</output>
-                                    </label>
-                                    <input type="range" class="form-range mb-4" min="10" max="50" id="multRange"
-                                        name="quizLength" oninput="multOutput.value = multRange.value" step="5"
-                                        value="10" required>
-
-                                    <div class="row">
-                                        <div class="col">
-                                            <h1 class="fs-5">Set combinations in digits
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
-                                                    data-bs-target="#helpModal">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </button>
-                                            </h1>
-
-
-                                        </div>
-                                    </div>
-                                    <div class="row g-2 ">
-                                        <div class="col-md-5">
-                                            <div class="form-floating">
-                                                <input type="number" class="form-control" id="floatingAddend1"
-                                                    placeholder="#" min="1" max="7" required>
-                                                <label for="floatingAddend1">Addend</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2 align-self-center text-center">
-                                            <h1 class="fs-5">X</h1>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="form-floating">
-                                                <input type="number" class="form-control" id="floatingAddend2" min="1"
-                                                    placeholder="#" max="7" required>
-                                                <label for="floatingAddend2">Addend</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <button type="submit" class="btn btn-primary">Proceed</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingFour">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapseFour" aria-expanded="false"
-                            aria-controls="flush-headingFour">
-                            <h5>Subtraction</h5>
-                        </button>
-                    </h2>
-                    <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour"
-                        data-bs-parent="#accordionFlushOperation">
-                        <div class="accordion-body">
-                            <form action="#" method="post">
-                                <div class="container  p-0">
-                                    {% csrf_token %}
-                                    <h1 class="fs-5">Set range</h1>
-                                    <label for="customRange2" class="form-label">From 1 to
-                                        <output name="quizMulthOutput" id="multOutput">10</output>
-                                    </label>
-                                    <input type="range" class="form-range mb-4" min="10" max="50" id="multRange"
-                                        name="quizLength" oninput="multOutput.value = multRange.value" step="5"
-                                        value="10" required>
-
-                                    <div class="row">
-                                        <div class="col">
-                                            <h1 class="fs-5">Set combinations in digits
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
-                                                    data-bs-target="#helpModal">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </button>
-                                            </h1>
-
-
-                                        </div>
-                                    </div>
-                                    <div class="row g-2 ">
-                                        <div class="col-md-5">
-                                            <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingMinuend" min="1"
-                                                    placeholder="#" max="7" required>
-                                                <label for="floatingMinuend">Minuend</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2 align-self-center text-center">
-                                            <h1 class="fs-5">X</h1>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="form-floating">
-                                                <input type="number" class="form-control" id="floatingSubtrahend"
-                                                    placeholder="#" min="1" max="7" required>
-                                                <label for="floatingSubtrahend">Subtrahend</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <button type="submit" class="btn btn-primary">Proceed</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
