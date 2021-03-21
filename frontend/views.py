@@ -72,7 +72,8 @@ def proceed(request, operation):
 
         context = {
             'questions': questions,
-            'operator': operator[operation.lower()]
+            'operator': operator[operation.lower()],
+            'operation': operation
         }
     else:
         raise Http404('Page was not found.')
