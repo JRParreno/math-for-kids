@@ -1,3 +1,63 @@
 {% extends 'frontend/base.html' %}
 {% block content %}
+<!-- <form action="#"> -->
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for question in questions %}
+    <div class="col">
+        <div class="card h-100 bg-{{question.color}} {{question.text}}">
+            <div class="card-body">
+                <h5 class="card-title">{{forloop.counter}}.</h5>
+                <div class="d-flex justify-content-center">
+                    <div class="d-flex flex-column m-3 w-50">
+                        <div class="align-self-end">
+                            <h2>{{question.first_value}}</h2>
+                        </div>
+                        <div>
+                            <h2>{{operator}}</h2>
+                        </div>
+                        <div class="align-self-end">
+                            <h2>{{question.second_value}}</h2>
+                        </div>
+                        <hr>
+                        <div class="form-floating mb-3 text-dark">
+                            <input type="number" class="form-control" id="floatingInput" placeholder="answer">
+                            <label for="floatingInput">Answer here</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="d-flex flex-column m-5 align-items-center">
+    <button type="submit" class="btn btn-primary btn-lg" onclick="submitAnswer()">Submit your answer</button>
+</div>
+
+<!--</form>-->
+
 {% endblock content %}
+{% block extrascripts %}
+<script>
+    function submitAnswer() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, submit!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Submit!',
+                    'Your answer has been submitted.',
+                    'success'
+                )
+            }
+        })
+    }
+</script>
+{% endblock extrascripts %}
